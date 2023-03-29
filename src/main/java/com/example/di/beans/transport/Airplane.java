@@ -1,7 +1,8 @@
-package com.example.DI.beans.transport;
+package com.example.di.beans.transport;
 
-import com.example.DI.beans.kindTransports.KindTransport;
+import com.example.di.beans.kindtransports.KindTransport;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
@@ -11,7 +12,8 @@ import javax.annotation.PreDestroy;
 @Component
 @Slf4j
 public class Airplane {
-    @Qualifier("Airplane")
+    @Autowired
+    @Qualifier("airTransport")
     public KindTransport kindTransport;
 
     @PostConstruct

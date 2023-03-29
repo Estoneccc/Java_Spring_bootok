@@ -1,4 +1,4 @@
-package com.example.DI;
+package com.example.di;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

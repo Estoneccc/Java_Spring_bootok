@@ -1,4 +1,4 @@
-package com.example.DI.beans.kindTransports;
+package com.example.di.beans.kindtransports;
 
 public interface KindTransport {
     public String getInformation();
