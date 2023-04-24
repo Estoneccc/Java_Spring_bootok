@@ -16,6 +16,11 @@ public class DigitValidator implements ConstraintValidator<IsDigit, String> {
         if (str == null) {
             return true;
         }
-        return str.matches("[0-9]+");
+        for (char c : str.toCharArray()) {
+            if (!Character.isDigit(c)) {
+                return false;
+            }
+        }
+        return true;
     }
 }
