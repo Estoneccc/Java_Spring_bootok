@@ -3,14 +3,20 @@ package com.example;
 import com.example.beans.BeanFirst;
 import com.example.beans.BeanSecond;
 import com.example.beans.BeanThird;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
+import org.springframework.core.env.Environment;
 
 @Configuration
 public class Config {
+
+    @Autowired
+    private Environment env;
+
     @Bean
     @Profile("test")
     public BeanFirst firstBean() {
@@ -25,8 +31,11 @@ public class Config {
 
     @Bean
     @Profile("test")
-    @ConditionalOnProperty(name = "app.environment", havingValue = "default", matchIfMissing = true)
     public BeanThird thirdBean() {
-        return new BeanThird();
+        String appEnvironment = env.getProperty("app.environment", "default");
+        if (!"default".equals(appEnvironment)) {
+            return new BeanThird();
+        }
+        return null;
     }
 }
